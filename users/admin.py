@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import User
 
+
 # Register your models here.
 @admin.register(User)
 class CustomUserAdmin(UserAdmin):
@@ -9,7 +10,7 @@ class CustomUserAdmin(UserAdmin):
         (
             "Profile",
             {
-                "fields":(
+                "fields": (
                     "avatar",
                     "username",
                     "password",
@@ -21,14 +22,14 @@ class CustomUserAdmin(UserAdmin):
         (
             "Permissions",
             {
-                "fields":(
+                "fields": (
                     "is_active",
                     "is_staff",
                     "is_superuser",
                     "groups",
                     "user_permissions",
                 ),
-                "classes":("collapse",),
+                "classes": ("collapse",),
             },
         ),
         (
@@ -40,4 +41,4 @@ class CustomUserAdmin(UserAdmin):
         ),
     )
 
-    list_display = ("username","email","name")
+    list_display = ("username", "email", "name")
