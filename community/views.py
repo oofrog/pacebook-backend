@@ -2,9 +2,9 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound, PermissionDenied
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from .models import Post
-from .serializers import PostListSerializer, PostDetailSerializer
 from rest_framework.status import HTTP_204_NO_CONTENT
+from .models import Post,Comment
+from .serializers import PostListSerializer, PostDetailSerializer, CommentSerializer
 
 
 class Posts(APIView):
@@ -69,3 +69,16 @@ class PostDetail(APIView):
         post.delete()
         return Response(status=HTTP_204_NO_CONTENT)
 
+class Comments(APIView):
+
+    def get_post(self, pk):
+        try:
+            return Post.objects.get(pk=pk)
+        except Post.DoesNotExist:
+            raise NotFound
+
+    def get(self,request,pk):
+        post = self.get_post(pk)
+        comments = Comment.objects.filter(post=post)
+        serializer = CommentSerializer(comments,many=True,)
+        return Response(serializer.data)
