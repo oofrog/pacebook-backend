@@ -12,3 +12,9 @@ class PostListSerializer(ModelSerializer):
             "payload",
             "created_at",
         )
+
+class PostDetailSerializer(ModelSerializer):
+
+    class Meta:
+        model = Post
+        fields = "__all__"
