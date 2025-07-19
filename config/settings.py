@@ -31,7 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 CUSTOM_APPS = [
     "users.apps.UsersConfig",
-    "common.apps.CommonConfig"
+    "common.apps.CommonConfig",
+    "community.apps.CommunityConfig",
 ]
 SYSTEM_APPS = [
     "django.contrib.admin",
@@ -126,5 +127,5 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-#Auth
-AUTH_USER_MODEL = 'users.User'
+# Auth
+AUTH_USER_MODEL = "users.User"
