@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from .models import Post
-
+from users.serializers import TinyUserSerializer
 
 class PostListSerializer(ModelSerializer):
 
@@ -14,6 +14,7 @@ class PostListSerializer(ModelSerializer):
         )
 
 class PostDetailSerializer(ModelSerializer):
+    owner = TinyUserSerializer(read_only=True)
 
     class Meta:
         model = Post
