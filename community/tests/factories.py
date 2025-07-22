@@ -1,0 +1,17 @@
+import factory
+from users.models import User
+from community.models import Post
+
+class UserFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = User
+
+    username = factory.Sequence(lambda n: f"user{n}")
+    password = factory.PostGenerationMethodCall("set_password", "testpass")
+
+class PostFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Post
+
+    owner = factory.SubFactory(UserFactory)
+    payload = factory.Faker('sentence')
