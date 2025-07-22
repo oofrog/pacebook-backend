@@ -10,8 +10,9 @@ pacebook-backend/
 ├── config/                
 │   ├── __init__.py
 │   ├── settings.py
-│   ├── urls.py          
-│   └── wsgi.py/ asgi.py
+│   ├── urls.py           
+│   └── wsgi.py / asgi.py
+│
 ├── common/
 ├── users/
 ├── community/
@@ -50,9 +51,9 @@ community/
 
 ```bash
 users/
-  └── tests/
-	├── test_models.py
-	└── test_views.py
+└── tests/
+    ├── test_models.py
+    └── test_views.py
 ```
 
 # 2. 코딩 스타일 가이드
@@ -64,7 +65,7 @@ users/
 import os
 import datetime
 
-#django
+# django
 from django.urls import path
 
 # 서드파티
@@ -85,7 +86,7 @@ from users.models import User
 | 상수 | `MAX_LENGTH = 50` | `UPPER_SNAKE_CASE` |
 | 파일 이름 | `serializers.py`, `test_views.py` | `snake_case` |
 
-# GIT 컨벤션
+# 3. GIT 컨벤션
 
 ## Branch 전략
 
