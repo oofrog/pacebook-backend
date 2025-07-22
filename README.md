@@ -10,16 +10,15 @@ pacebook-backend/
 ├── config/                
 │   ├── __init__.py
 │   ├── settings.py
-│   ├── [urls.py](http://urls.py/)           
-│   └── [wsgi.py](http://wsgi.py/) / [asgi.py](http://asgi.py/)
-│
+│   ├── urls.py          
+│   └── wsgi.py/ asgi.py
 ├── common/
 ├── users/
 ├── community/
 ├── app/
 │
-├── [manage.py](http://manage.py/)
-└── [README.md](http://readme.md/)
+├── manage.py
+└── README.md
 ```
 
 ## 앱 디렉토리 내부구조
@@ -27,11 +26,11 @@ pacebook-backend/
 ```bash
 community/
 ├── __init__.py
-├── [models.py](http://models.py/)
-├── [admin.py](http://admin.py/)
-├── [serializers.py](http://serializers.py/)
-├── [views.py](http://views.py/)
-├── [urls.py](http://urls.py/)
+├── models.py
+├── admin.py
+├── serializers.py
+├── views.py
+├── urls.py
 ├── tests/
 │   ├── __init__.py
 │   ├── test_models.py
@@ -51,9 +50,9 @@ community/
 
 ```bash
 users/
-	└── tests/
-				├── test_models.py
-				└── test_views.py
+  └── tests/
+	├── test_models.py
+	└── test_views.py
 ```
 
 # 2. 코딩 스타일 가이드
