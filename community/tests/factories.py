@@ -1,6 +1,6 @@
 import factory
 from users.models import User
-from community.models import Post
+from community.models import Post,Comment
 
 class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
@@ -14,4 +14,12 @@ class PostFactory(factory.django.DjangoModelFactory):
         model = Post
 
     owner = factory.SubFactory(UserFactory)
+    payload = factory.Faker('sentence')
+
+class CommentFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Comment
+
+    user = factory.SubFactory(UserFactory)
+    post = factory.SubFactory(PostFactory)
     payload = factory.Faker('sentence')

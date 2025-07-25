@@ -21,6 +21,8 @@ class PostDetailSerializer(ModelSerializer):
         fields = "__all__"
 
 class CommentSerializer(ModelSerializer):
+    user = TinyUserSerializer(read_only=True)
+    post = PostListSerializer(read_only=True)
 
     class Meta:
         model = Comment
