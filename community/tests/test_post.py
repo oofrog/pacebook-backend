@@ -9,14 +9,13 @@ class TestPostDetail(APITestCase):
         self.user2 = UserFactory()
         self.post = PostFactory(owner=self.user1)
 
-    def test_post_not_found(self):
+    def test_get_post_detail(self):
+        # not found
         response = self.client.get("/api/v1/posts/404")
         self.assertEqual(
             response.status_code,
             404,
         )
-
-    def test_get_post_detail(self):
         response = self.client.get("/api/v1/posts/1")
         self.assertEqual(
             response.status_code,
@@ -29,7 +28,7 @@ class TestPostDetail(APITestCase):
         )
 
     def test_put_post(self):
-        response = self.client.put("/api/v1/posts/1")
+
         # unauth
         response = self.client.put("/api/v1/posts/1")
         self.assertEqual(
@@ -37,8 +36,14 @@ class TestPostDetail(APITestCase):
             403,
         )
         # auth
-        # permission denied
         self.client.force_login(self.user2)
+        # not found
+        response = self.client.put("/api/v1/posts/404")
+        self.assertEqual(
+            response.status_code,
+            404,
+        )
+        # permission denied
         response = self.client.put("/api/v1/posts/1")
         self.assertEqual(
             response.status_code,
