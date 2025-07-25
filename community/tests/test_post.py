@@ -1,4 +1,5 @@
 from rest_framework.test import APITestCase
+from community.models import Post
 from .factories import UserFactory, PostFactory
 
 
@@ -81,4 +82,39 @@ class TestPostDetail(APITestCase):
         self.assertEqual(
             data["payload"],
             updated_data["payload"],
+        )
+
+    def test_delete_post(self):
+        # unauth
+        response = self.client.delete("/api/v1/posts/1")
+        self.assertEqual(
+            response.status_code,
+            403,
+        )
+        # auth
+        self.client.force_login(self.user2)
+        # not found
+        response = self.client.delete("/api/v1/posts/404")
+        self.assertEqual(
+            response.status_code,
+            404,
+        )
+        # permission denied
+        response = self.client.delete("/api/v1/posts/1")
+        self.assertEqual(
+            response.status_code,
+            403,
+        )
+        self.client.force_login(self.user1)
+        # happy case
+        response = self.client.delete("/api/v1/posts/1")
+        self.assertEqual(
+            response.status_code,
+            204,
+        )
+        self.assertFalse(Post.objects.filter(pk=self.post.pk).exists())
+        response = self.client.delete("/api/v1/posts/1")
+        self.assertEqual(
+            response.status_code,
+            404,
         )
