@@ -1,7 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import NotFound, PermissionDenied
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework import status
 from .models import Post, Comment
 from .serializers import PostListSerializer, PostDetailSerializer, CommentSerializer
@@ -110,3 +110,39 @@ class Comments(APIView):
                 serialiizer.errors,
                 status=status.HTTP_400_BAD_REQUEST,
             )
+
+
+class CommentDetail(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+    def get_comment(self, comment_pk):
+        try:
+            return Comment.objects.get(pk=comment_pk)
+        except Comment.DoesNotExist:
+            raise NotFound
+
+    def patch(self, request, post_pk, comment_pk):
+        comment = self.get_comment(comment_pk)
+        if comment.user != request.user:
+            raise PermissionDenied
+        serializer = CommentSerializer(
+            comment,
+            data=request.data,
+        )
+        if serializer.is_valid():
+            updated_comment = serializer.save()
+            serializer = CommentSerializer(updated_comment)
+            return Response(serializer.data)
+        else:
+            return Response(
+                serializer.errors,
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+    def delete(self,request, post_pk,comment_pk):
+        comment = self.get_comment(comment_pk)
+        if comment.user != request.user:
+            raise PermissionDenied
+        comment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
