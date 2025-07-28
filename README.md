@@ -51,9 +51,10 @@ community/
 
 ```bash
 users/
-	└── tests/
-				├── test_models.py
-				└── test_views.py
+└── tests/
+	├── test_models.py
+	├── test_views.py
+	└── factories.py
 ```
 
 # 2. 코딩 스타일 가이드
@@ -93,7 +94,7 @@ from users.models import User
 | 브랜치 | 역할 |
 | --- | --- |
 | `main` | 운영(배포) 브랜치 |
-| `develop` | 통합 개발 브랜치 |
+| `dev` | 통합 개발 브랜치 |
 | `feature/*` | 기능 개발 브랜치 |
 | `hotfix/*` | 운영 긴급 수정 |
 | `release/*` | 배포 준비용 브랜치 (선택사항) |
@@ -101,7 +102,7 @@ from users.models import User
 ### 흐름 요약
 
 1. 모든 개발은 `feature/*` 브랜치에서 시작한다.
-2. PR을 통해 `develop`으로 merge한다.
+2. PR을 통해 `dev`으로 merge한다.
 3. 운영 배포 시 `main`으로 merge → 태그 추가 및 릴리즈
 
 예시: feature/community

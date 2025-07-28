@@ -3,8 +3,13 @@ from rest_framework.response import Response
 from rest_framework.exceptions import NotFound, PermissionDenied
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework import status
-from .models import Post, Comment
-from .serializers import PostListSerializer, PostDetailSerializer, CommentSerializer
+from .models import Post, Comment, Like
+from .serializers import (
+    PostListSerializer,
+    PostDetailSerializer,
+    CommentSerializer,
+    LikeSerializer,
+)
 
 
 class Posts(APIView):
@@ -140,9 +145,57 @@ class CommentDetail(APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-    def delete(self,request, post_pk,comment_pk):
+    def delete(self, request, post_pk, comment_pk):
         comment = self.get_comment(comment_pk)
         if comment.user != request.user:
             raise PermissionDenied
         comment.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class Likes(APIView):
+
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def get_post(self, pk):
+        try:
+            return Post.objects.get(pk=pk)
+        except Post.DoesNotExist:
+            raise NotFound
+
+    def get(self, request, pk):
+        post = self.get_post(pk)
+        likes = Like.objects.filter(post=post)
+        serializer = LikeSerializer(
+            likes,
+            many=True,
+        )
+        return Response(serializer.data)
+
+    def post(self, request, pk):
+        post = self.get_post(pk)
+        serializer = LikeSerializer(data=request.data)
+        if serializer.is_valid():
+            new_like = serializer.save(
+                user=request.user,
+                post=post,
+            )
+            serializer = LikeSerializer(new_like)
+            return Response(serializer.data)
+        else:
+            return Response(
+                serializer.errors,
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+    def delete(self, request, pk):
+        post = self.get_post(pk)
+        try:
+            like = Like.objects.get(
+                user=request.user,
+                post=post,
+            )
+        except  Like.DoesNotExist:
+            raise NotFound
+        like.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
