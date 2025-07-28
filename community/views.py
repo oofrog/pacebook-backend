@@ -195,7 +195,21 @@ class Likes(APIView):
                 user=request.user,
                 post=post,
             )
-        except  Like.DoesNotExist:
+        except Like.DoesNotExist:
             raise NotFound
         like.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class MyPage(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        owner = request.user
+        posts = Post.objects.filter(owner=owner)
+        serializer = PostListSerializer(
+            posts,
+            many=True,
+        )
+        return Response(serializer.data)
