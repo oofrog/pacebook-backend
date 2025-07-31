@@ -25,11 +25,11 @@ SECRET_KEY = "django-insecure-ox_!g&!ac%=5v2zpk45ru%q%!$^kf8+!!8^dyrn8cl(%_%l=d^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["3.134.83.56", "localhost"]
 
 
 # Application definition
-THIRD_PARTY_APPS=[
+THIRD_PARTY_APPS = [
     "rest_framework",
     "drf_spectacular",
 ]
@@ -48,7 +48,7 @@ SYSTEM_APPS = [
     "django.contrib.staticfiles",
 ]
 
-INSTALLED_APPS = SYSTEM_APPS + CUSTOM_APPS +THIRD_PARTY_APPS
+INSTALLED_APPS = SYSTEM_APPS + CUSTOM_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -138,13 +138,13 @@ AUTH_USER_MODEL = "users.User"
 # Swagger Settings
 REST_FRAMEWORK = {
     # YOUR SETTINGS
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Pacebook Project API',
-    'DESCRIPTION': 'Pacebook 소셜 미디어 서비스의 공식 API 문서입니다.',
-    'VERSION': '1.0.0',
-    'SERVE_INCLUDE_SCHEMA': True,
+    "TITLE": "Pacebook Project API",
+    "DESCRIPTION": "Pacebook 소셜 미디어 서비스의 공식 API 문서입니다.",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": True,
     # OTHER SETTINGS
 }
