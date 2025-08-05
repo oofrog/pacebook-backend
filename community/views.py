@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.exceptions import NotFound, PermissionDenied
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework import status
+from drf_spectacular.utils import extend_schema
 from .models import Post, Comment, Like
 from .serializers import (
     PostListSerializer,
@@ -24,6 +25,7 @@ class Posts(APIView):
         )
         return Response(serializer.data)
 
+    @extend_schema(request=PostDetailSerializer)
     def post(self, request):
         serializer = PostDetailSerializer(data=request.data)
         if serializer.is_valid():
@@ -54,6 +56,7 @@ class PostDetail(APIView):
         serializer = PostDetailSerializer(post)
         return Response(serializer.data)
 
+    @extend_schema(request=PostDetailSerializer)
     def put(self, request, pk):
         post = self.get_object(pk)
         if post.owner != request.user:
@@ -100,6 +103,7 @@ class Comments(APIView):
         )
         return Response(serializer.data)
 
+    @extend_schema(request=CommentSerializer)
     def post(self, request, pk):
         post = self.get_post(pk)
         serialiizer = CommentSerializer(data=request.data)
@@ -127,6 +131,7 @@ class CommentDetail(APIView):
         except Comment.DoesNotExist:
             raise NotFound
 
+    @extend_schema(request=CommentSerializer)
     def patch(self, request, post_pk, comment_pk):
         comment = self.get_comment(comment_pk)
         if comment.user != request.user:
@@ -172,6 +177,7 @@ class Likes(APIView):
         )
         return Response(serializer.data)
 
+    @extend_schema(request=LikeSerializer)
     def post(self, request, pk):
         post = self.get_post(pk)
         serializer = LikeSerializer(data=request.data)
