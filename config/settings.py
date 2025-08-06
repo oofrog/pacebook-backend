@@ -25,13 +25,14 @@ SECRET_KEY = "django-insecure-ox_!g&!ac%=5v2zpk45ru%q%!$^kf8+!!8^dyrn8cl(%_%l=d^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["43.200.252.129", "localhost"]
+ALLOWED_HOSTS = ["43.200.252.129", "127.0.0.1"]
 
 
 # Application definition
 THIRD_PARTY_APPS = [
     "rest_framework",
     "drf_spectacular",
+    "rest_framework_simplejwt",
 ]
 
 CUSTOM_APPS = [
@@ -135,9 +136,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Auth
 AUTH_USER_MODEL = "users.User"
 
-# Swagger Settings
 REST_FRAMEWORK = {
-    # YOUR SETTINGS
+    # JWT
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    # Swagger SETTINGS
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 

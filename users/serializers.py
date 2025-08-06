@@ -1,8 +1,8 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework import serializers
 from .models import User
 
 
-class TinyUserSerializer(ModelSerializer):
+class TinyUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
@@ -10,3 +10,7 @@ class TinyUserSerializer(ModelSerializer):
             "pk",
             "username",
         )
+
+
+class KakaoLogInSerializer(serializers.Serializer):
+    code = serializers.CharField()
