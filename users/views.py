@@ -29,7 +29,7 @@ class KakaoLogIn(APIView):
                 data={
                     "grant_type": "authorization_code",
                     "client_id": "f8c8931e4931db3fe1ce92e034dab5b9",
-                    "redirect_uri": "http://43.200.252.129:8000/login/kakao/",
+                    "redirect_uri": "http://3.35.205.151:8000/login/kakao/",
                     "code": code,
                 },
             )
