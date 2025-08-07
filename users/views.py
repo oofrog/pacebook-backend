@@ -28,8 +28,8 @@ class KakaoLogIn(APIView):
                 },
                 data={
                     "grant_type": "authorization_code",
-                    "client_id": "bf6b1877683673eec58fd2418ef8d714",
-                    "redirect_uri": "http://127.0.0.1:8000/social/kakao",
+                    "client_id": "942a014748a18e7d11779ffa8b37ec69",
+                    "redirect_uri": "http://127.0.0.1:8000/login/kakao/",
                     "code": code,
                 },
             )
@@ -49,10 +49,13 @@ class KakaoLogIn(APIView):
             user_data = user_data.json()
             kakao_account = user_data.get("kakao_account")
             profile = kakao_account.get("profile")
+            email = kakao_account.get("email")
+            username, _ = email.split("@")
             user, created = User.objects.get_or_create(
-                username=profile.get("nickname"),
+                email=email,
                 defaults={
-                    "username": profile.get("nickname"),
+                    "email":email,
+                    "username": username,
                     "name": profile.get("nickname"),
                 },
             )
@@ -72,6 +75,5 @@ class KakaoLogIn(APIView):
                 },
                 status=status.HTTP_200_OK,
             )
-        except Exception as e:
-            print(e)
+        except Exception:
             Response(status=status.HTTP_400_BAD_REQUEST)
