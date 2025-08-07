@@ -5,6 +5,10 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 class User(AbstractUser):
 
+    class GenderChoices(models.TextChoices):
+        MALE = ("male", "Male")
+        FEMALE = ("female", "Female")
+
     first_name = models.CharField(
         max_length=150,
         editable=False,
@@ -13,11 +17,20 @@ class User(AbstractUser):
         max_length=150,
         editable=False,
     )
-    avatar = models.ImageField(
+    avatar = models.URLField(
+        null=True,
         blank=True,
     )
     name = models.CharField(
         max_length=150,
         default="",
     )
-    description = models.TextField()
+    gender = models.CharField(
+        max_length=150,
+        choices=GenderChoices,
+        default=GenderChoices.MALE,
+    )
+    birth_day = models.DateField(
+        null=True,
+        blank=True,
+    )
