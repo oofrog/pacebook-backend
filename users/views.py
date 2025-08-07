@@ -28,8 +28,8 @@ class KakaoLogIn(APIView):
                 },
                 data={
                     "grant_type": "authorization_code",
-                    "client_id": "942a014748a18e7d11779ffa8b37ec69",
-                    "redirect_uri": "http://127.0.0.1:8000/login/kakao/",
+                    "client_id": "f8c8931e4931db3fe1ce92e034dab5b9",
+                    "redirect_uri": "http://43.200.252.129:8000/login/kakao/",
                     "code": code,
                 },
             )
@@ -54,7 +54,7 @@ class KakaoLogIn(APIView):
             user, created = User.objects.get_or_create(
                 email=email,
                 defaults={
-                    "email":email,
+                    "email": email,
                     "username": username,
                     "name": profile.get("nickname"),
                 },
