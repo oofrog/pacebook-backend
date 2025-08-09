@@ -39,6 +39,7 @@ CUSTOM_APPS = [
     "users.apps.UsersConfig",
     "common.apps.CommonConfig",
     "community.apps.CommunityConfig",
+    "records.apps.RecordsConfig",
 ]
 SYSTEM_APPS = [
     "django.contrib.admin",
