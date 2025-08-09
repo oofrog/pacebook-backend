@@ -27,7 +27,7 @@ class TestPostRecord(APITestCase):
         self.assertEqual(
             response.status_code,
             401,
-            "카카오로그인 인증 오류는 401"
+            "카카오로그인 인증 오류는 401",
         )
 
     def test_invalid_data(self):
@@ -56,3 +56,27 @@ class TestPostRecord(APITestCase):
                 key,
                 data,
             )
+        self.assertEqual(
+            data["owner"]["pk"],
+            self.user.pk,
+        )
+        self.assertEqual(
+            data["duration_sec"],
+            self.DURATION,
+        )
+        self.assertEqual(
+            data["distance_m"],
+            self.DISTANCE,
+        )
+        self.assertEqual(
+            data["pace"],
+            self.PACE,
+        )
+        self.assertEqual(
+            data["kcal"],
+            self.KCAL,
+        )
+        self.assertEqual(
+            data["route"],
+            self.ROUTE,
+        )
