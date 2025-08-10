@@ -13,6 +13,7 @@ from .serializers import (
 )
 
 
+@extend_schema(tags=["Posts"])
 class Posts(APIView):
 
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -41,6 +42,7 @@ class Posts(APIView):
             )
 
 
+@extend_schema(tags=["Posts"])
 class PostDetail(APIView):
 
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -84,6 +86,7 @@ class PostDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+@extend_schema(tags=["Posts"])
 class Comments(APIView):
 
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -121,6 +124,7 @@ class Comments(APIView):
             )
 
 
+@extend_schema(tags=["Posts"])
 class CommentDetail(APIView):
 
     permission_classes = [IsAuthenticated]
@@ -158,6 +162,7 @@ class CommentDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+@extend_schema(tags=["Posts"])
 class Likes(APIView):
 
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -207,6 +212,7 @@ class Likes(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+@extend_schema(tags=["Posts"])
 class MyPage(APIView):
 
     permission_classes = [IsAuthenticated]

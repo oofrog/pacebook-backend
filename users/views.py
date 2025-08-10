@@ -5,10 +5,12 @@ from rest_framework.response import Response
 from rest_framework import status
 from drf_spectacular.utils import extend_schema
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.views import TokenRefreshView
 from .models import User
 from .serializers import KakaoLogInSerializer
 
 
+@extend_schema(tags=["Login"])
 class KakaoLogIn(APIView):
 
     @extend_schema(request=KakaoLogInSerializer)
@@ -54,7 +56,7 @@ class KakaoLogIn(APIView):
             user, created = User.objects.get_or_create(
                 email=email,
                 defaults={
-                    "email":email,
+                    "email": email,
                     "username": username,
                     "name": profile.get("nickname"),
                 },
@@ -77,3 +79,10 @@ class KakaoLogIn(APIView):
             )
         except Exception:
             Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+@extend_schema(tags=["Login"])
+class NewTokenRefreshView(TokenRefreshView):
+    """JWT 토큰 재발급"""
+
+    pass
