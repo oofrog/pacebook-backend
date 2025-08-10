@@ -4,7 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import status
-from drf_spectacular.utils import extend_schema
+from drf_spectacular.utils import extend_schema, OpenApiParameter
 from .serializers import RecordDetailSerializer
 from .models import Record
 
@@ -32,6 +32,16 @@ class MyRecords(APIView):
 
     permission_classes = [IsAuthenticated]
 
+    @extend_schema(
+        parameters=[
+            OpenApiParameter(
+                name="date",
+                type=str,
+                description="YYYY-MM-DD 포맷. 입력 없거나 오류 시 오늘 날짜 반환",
+                required=False,
+            ),
+        ]
+    )
     def get(self, request):
         today = str(timezone.localdate())
         date_str = request.query_params.get("date", today)
