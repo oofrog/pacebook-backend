@@ -25,19 +25,21 @@ SECRET_KEY = "django-insecure-ox_!g&!ac%=5v2zpk45ru%q%!$^kf8+!!8^dyrn8cl(%_%l=d^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["43.200.252.129", "127.0.0.1"]
 
 
 # Application definition
-THIRD_PARTY_APPS=[
+THIRD_PARTY_APPS = [
     "rest_framework",
     "drf_spectacular",
+    "rest_framework_simplejwt",
 ]
 
 CUSTOM_APPS = [
     "users.apps.UsersConfig",
     "common.apps.CommonConfig",
     "community.apps.CommunityConfig",
+    "records.apps.RecordsConfig",
 ]
 SYSTEM_APPS = [
     "django.contrib.admin",
@@ -48,7 +50,7 @@ SYSTEM_APPS = [
     "django.contrib.staticfiles",
 ]
 
-INSTALLED_APPS = SYSTEM_APPS + CUSTOM_APPS +THIRD_PARTY_APPS
+INSTALLED_APPS = SYSTEM_APPS + CUSTOM_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -115,7 +117,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "ko-kr"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Seoul"
 
 USE_I18N = True
 
@@ -135,16 +137,20 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Auth
 AUTH_USER_MODEL = "users.User"
 
-# Swagger Settings
 REST_FRAMEWORK = {
-    # YOUR SETTINGS
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    # JWT
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+    ),
+    # Swagger SETTINGS
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'Pacebook Project API',
-    'DESCRIPTION': 'Pacebook 소셜 미디어 서비스의 공식 API 문서입니다.',
-    'VERSION': '1.0.0',
-    'SERVE_INCLUDE_SCHEMA': True,
+    "TITLE": "Pacebook Project API",
+    "DESCRIPTION": "Pacebook 소셜 미디어 서비스의 공식 API 문서입니다.",
+    "VERSION": "1.0.0",
+    "SERVE_INCLUDE_SCHEMA": True,
     # OTHER SETTINGS
 }

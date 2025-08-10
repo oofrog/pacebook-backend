@@ -11,12 +11,13 @@ class CustomUserAdmin(UserAdmin):
             "Profile",
             {
                 "fields": (
-                    "avatar",
                     "username",
                     "password",
+                    "avatar",
                     "name",
                     "email",
-                    "description",
+                    "gender",
+                    "birth_day",
                 ),
             },
         ),
@@ -45,6 +46,8 @@ class CustomUserAdmin(UserAdmin):
     list_display = (
         "username",
         "email",
+        "avatar",
         "name",
-        "description",
+        "gender",
+        "birth_day",
     )

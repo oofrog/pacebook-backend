@@ -7,16 +7,21 @@ authors = [
 ]
 license = {text = "MIT"}
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
     "django (>=5.2.3,<6.0.0)",
     "pillow (>=11.3.0,<12.0.0)",
     "djangorestframework (>=3.16.0,<4.0.0)",
-    "factory-boy (>=3.3.3,<4.0.0)",
-    "drf-spectacular (>=0.28.0,<0.29.0)"
+    "drf-spectacular (>=0.28.0,<0.29.0)",
+    "requests (>=2.32.4,<3.0.0)",
+    "djangorestframework-simplejwt (>=5.5.1,<6.0.0)"
 ]
 
 
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+factory-boy = "^3.3.3"
+
