@@ -23,7 +23,6 @@ class TestPostRecord(APITestCase):
 
     def test_unauth(self):
         response = self.client.post(self.URL, self.valid_data)
-        print(response.json())
         self.assertEqual(
             response.status_code,
             401,

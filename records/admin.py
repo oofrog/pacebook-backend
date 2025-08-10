@@ -13,4 +13,6 @@ class RecordAdmin(admin.ModelAdmin):
         "pace",
         "kcal",
         "route",
+        "created_at",
+        "updated_at",
     )
