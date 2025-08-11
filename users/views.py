@@ -1,13 +1,14 @@
 import requests
-from django.contrib.auth import login
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.exceptions import ParseError
 from rest_framework import status
 from drf_spectacular.utils import extend_schema
 from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.views import TokenRefreshView
 from .models import User
-from .serializers import KakaoLogInSerializer
+from .serializers import KakaoLogInSerializer, PrivateUserSerializer
 
 
 @extend_schema(tags=["Login"])
@@ -30,8 +31,8 @@ class KakaoLogIn(APIView):
                 },
                 data={
                     "grant_type": "authorization_code",
-                    "client_id": "942a014748a18e7d11779ffa8b37ec69",
-                    "redirect_uri": "http://127.0.0.1:8000/login/kakao/",
+                    "client_id": "cc8858dd3a4fd75892ead5d8d5d661cb",
+                    "redirect_uri": "http://127.0.0.1:8000/api/v1/login/kakao/",
                     "code": code,
                 },
             )
@@ -66,8 +67,6 @@ class KakaoLogIn(APIView):
                 user.set_unusable_password()
                 user.save()
 
-            login(request, user)
-
             refresh = RefreshToken.for_user(user)
 
             return Response(
@@ -86,3 +85,26 @@ class NewTokenRefreshView(TokenRefreshView):
     """JWT 토큰 재발급"""
 
     pass
+
+
+@extend_schema(tags=["Users"])
+class UserMe(APIView):
+
+    permission_classes = [IsAuthenticated]
+
+    @extend_schema(request=PrivateUserSerializer)
+    def put(self, request):
+        user = request.user
+        serializer = PrivateUserSerializer(
+            user,
+            data=request.data,
+        )
+        if serializer.is_valid():
+            user = serializer.save()
+            serializer = PrivateUserSerializer(user)
+            return Response(serializer.data)
+        else:
+            return Response(
+                serializer.errors,
+                status=status.HTTP_400_BAD_REQUEST,
+            )

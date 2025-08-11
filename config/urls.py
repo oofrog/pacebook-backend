@@ -26,6 +26,7 @@ urlpatterns = [
     path("api/swagger/", SpectacularSwaggerView.as_view(url_name="schema")),
     path("api/v1/posts/", include("community.urls")),
     path("api/v1/records/", include("records.urls")),
+    path("api/v1/users/", include("users.urls")),
     path("api/v1/login/kakao/", KakaoLogIn.as_view()),
     path(
         "api/v1/login/token/refresh/", NewTokenRefreshView.as_view(), name="token_refresh"

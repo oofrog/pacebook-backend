@@ -14,3 +14,21 @@ class TinyUserSerializer(serializers.ModelSerializer):
 
 class KakaoLogInSerializer(serializers.Serializer):
     code = serializers.CharField()
+
+
+class PrivateUserSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = (
+            "pk",
+            "username",
+            "email",
+            "name",
+            "gender",
+            "birth_day",
+        )
+        read_only_fields = (
+            "username",
+            "email",
+        )
