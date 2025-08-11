@@ -86,7 +86,7 @@ class PostDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-@extend_schema(tags=["Posts"])
+@extend_schema(tags=["Comments"])
 class Comments(APIView):
 
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -124,7 +124,7 @@ class Comments(APIView):
             )
 
 
-@extend_schema(tags=["Posts"])
+@extend_schema(tags=["Comments"])
 class CommentDetail(APIView):
 
     permission_classes = [IsAuthenticated]
@@ -162,7 +162,7 @@ class CommentDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-@extend_schema(tags=["Posts"])
+@extend_schema(tags=["Likes"])
 class Likes(APIView):
 
     permission_classes = [IsAuthenticatedOrReadOnly]
