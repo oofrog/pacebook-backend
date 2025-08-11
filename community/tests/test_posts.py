@@ -49,7 +49,7 @@ class TestPosts(APITestCase):
         response = self.client.post(self.URL)
         self.assertEqual(
             response.status_code,
-            403,
+            401,
         )
 
         # auth

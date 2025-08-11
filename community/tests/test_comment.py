@@ -20,7 +20,7 @@ class TestPatchComment(APITestCase):
         response = self.client.patch(f"{self.URL}999")
         self.assertEqual(
             response.status_code,
-            403,
+            401,
         )
 
     def test_not_found(self):
@@ -109,7 +109,7 @@ class TestDeleteComment(APITestCase):
         response = self.client.delete(f"{self.URL}999")
         self.assertEqual(
             response.status_code,
-            403,
+            401,
         )
 
     def test_not_found(self):
