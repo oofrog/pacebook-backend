@@ -34,7 +34,7 @@ class TestPostDetail(APITestCase):
         response = self.client.put("/api/v1/posts/1")
         self.assertEqual(
             response.status_code,
-            403,
+            401,
         )
         # auth
         self.client.force_login(self.user2)
@@ -89,7 +89,7 @@ class TestPostDetail(APITestCase):
         response = self.client.delete("/api/v1/posts/1")
         self.assertEqual(
             response.status_code,
-            403,
+            401,
         )
         # auth
         self.client.force_login(self.user2)

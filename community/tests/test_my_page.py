@@ -16,7 +16,7 @@ class TestGetMyPage(APITestCase):
         response = self.client.get(self.URL)
         self.assertEqual(
             response.status_code,
-            403,
+            401,
         )
 
     def test_success(self):

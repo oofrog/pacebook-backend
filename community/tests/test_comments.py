@@ -44,7 +44,7 @@ class TestComments(APITestCase):
         response = self.client.post(f"{self.URL}{self.post.pk}/comments")
         self.assertEqual(
             response.status_code,
-            403,
+            401,
         )
 
     def test_post_comment_not_found(self):

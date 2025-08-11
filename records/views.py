@@ -9,10 +9,13 @@ from .serializers import RecordDetailSerializer
 from .models import Record
 
 
+@extend_schema(tags=["Records"])
 class Records(APIView):
     permission_classes = [IsAuthenticated]
 
-    @extend_schema(request=RecordDetailSerializer)
+    @extend_schema(
+        request=RecordDetailSerializer,
+    )
     def post(self, request):
         serializer = RecordDetailSerializer(data=request.data)
         if serializer.is_valid():
@@ -27,7 +30,7 @@ class Records(APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-
+@extend_schema(tags=["Records"])
 class MyRecords(APIView):
 
     permission_classes = [IsAuthenticated]
@@ -40,7 +43,7 @@ class MyRecords(APIView):
                 description="YYYY-MM-DD 포맷. 입력 없거나 오류 시 오늘 날짜 반환",
                 required=False,
             ),
-        ]
+        ],
     )
     def get(self, request):
         today = str(timezone.localdate())

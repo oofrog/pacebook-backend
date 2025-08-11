@@ -53,7 +53,7 @@ class TestPostLike(APITestCase):
         response = self.client.post(f"{self.URL}{self.post.pk}/likes")
         self.assertEqual(
             response.status_code,
-            403,
+            401,
         )
 
     def test_not_found(self):
@@ -101,7 +101,7 @@ class TestDeleteLike(APITestCase):
         response = self.client.delete(f"{self.URL}{self.post.pk}/likes")
         self.assertEqual(
             response.status_code,
-            403,
+            401,
         )
 
     def test_post_not_found(self):

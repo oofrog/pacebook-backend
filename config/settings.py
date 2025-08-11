@@ -152,5 +152,4 @@ SPECTACULAR_SETTINGS = {
     "DESCRIPTION": "Pacebook 소셜 미디어 서비스의 공식 API 문서입니다.",
     "VERSION": "1.0.0",
     "SERVE_INCLUDE_SCHEMA": True,
-    # OTHER SETTINGS
 }
