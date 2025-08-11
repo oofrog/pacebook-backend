@@ -1,4 +1,5 @@
 import requests
+from django.conf import settings
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
@@ -31,8 +32,8 @@ class KakaoLogIn(APIView):
                 },
                 data={
                     "grant_type": "authorization_code",
-                    "client_id": "cc8858dd3a4fd75892ead5d8d5d661cb",
-                    "redirect_uri": "http://127.0.0.1:8000/api/v1/login/kakao/",
+                    "client_id": settings.KAKAO_CLIENT_ID,
+                    "redirect_uri": settings.KAKAO_REDIRECT_URI,
                     "code": code,
                 },
             )
