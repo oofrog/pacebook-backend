@@ -1,10 +1,8 @@
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from .views import RunningMateViewSet
-
-router = DefaultRouter()
-router.register(r'', RunningMateViewSet)
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path("", views.RunGroups.as_view()),
+    path("<int:pk>", views.RunGroupDetail.as_view()),
+    path("<int:pk>/join", views.JoinRun.as_view()),
 ]

@@ -18,7 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
-from users.views import KakaoLogIn,NewTokenRefreshView
+from users.views import KakaoLogIn, NewTokenRefreshView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -27,8 +27,11 @@ urlpatterns = [
     path("api/v1/posts/", include("community.urls")),
     path("api/v1/records/", include("records.urls")),
     path("api/v1/users/", include("users.urls")),
+    path("api/v1/runningmates/", include("runningmates.urls")),
     path("api/v1/login/kakao/", KakaoLogIn.as_view()),
     path(
-        "api/v1/login/token/refresh/", NewTokenRefreshView.as_view(), name="token_refresh"
+        "api/v1/login/token/refresh/",
+        NewTokenRefreshView.as_view(),
+        name="token_refresh",
     ),
 ]
