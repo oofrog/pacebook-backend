@@ -44,6 +44,7 @@ CUSTOM_APPS = [
     "common.apps.CommonConfig",
     "community.apps.CommunityConfig",
     "records.apps.RecordsConfig",
+    "runningmates.apps.RunningmatesConfig",
 ]
 SYSTEM_APPS = [
     "django.contrib.admin",
