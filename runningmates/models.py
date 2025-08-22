@@ -1,6 +1,4 @@
 from django.db import models
-from django.conf import settings
-from drf_spectacular.utils import extend_schema, OpenApiParameter
 from common.models import CommonModel
 
 

@@ -81,7 +81,8 @@ class RunGroupDetail(APIView):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class JoinRun(APIView):
+@extend_schema(tags=["RunningMates"])
+class JoinOrLeaveRun(APIView):
 
     permission_classes = [IsAuthenticated]
 
@@ -102,7 +103,10 @@ class JoinRun(APIView):
             serializer = JoinOrLeaveRunSerializer(join_group)
             return Response(serializer.data)
         else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(
+                serializer.errors,
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
     def delete(self, request, pk):
         group = self.get_object(pk)
