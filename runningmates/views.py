@@ -15,7 +15,6 @@ from .serializers import (
 @extend_schema(tags=["RunningMates"])
 class RunGroups(APIView):
 
-    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get(self, request):
 
@@ -31,9 +30,7 @@ class RunGroups(APIView):
 
         serializer = RunGroupDetailSerializer(data=request.data)
         if serializer.is_valid():
-            new_group = serializer.save(
-                host=request.user,
-            )
+            new_group = serializer.save()
             serializer = RunGroupDetailSerializer(new_group)
             return Response(serializer.data)
         else:
@@ -46,7 +43,6 @@ class RunGroups(APIView):
 @extend_schema(tags=["RunningMates"])
 class RunGroupDetail(APIView):
 
-    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_object(self, pk):
         try:

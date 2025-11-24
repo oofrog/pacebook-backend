@@ -5,9 +5,13 @@ from .models import RunGroup, RunParticipant
 @admin.register(RunGroup)
 class RunGroupAdmin(admin.ModelAdmin):
     list_display = (
-        "host",
-        "place",
+        "title",
         "scheduled_time",
+        "location_lat",
+        "location_lng",
+        "pace",
+        "distance_km",
+        "description",
     )
 
 

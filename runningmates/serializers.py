@@ -8,8 +8,7 @@ class RunGroupListSerializer(serializers.ModelSerializer):
     class Meta:
         model = RunGroup
         fields = (
-            "host",
-            "place",
+            "title",
         )
 
 
