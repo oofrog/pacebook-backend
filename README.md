@@ -1,3 +1,32 @@
+# 🏃‍♂️ Pacebook: 러닝 커뮤니티 플랫폼
+> **Django와 AWS를 활용한 사용자 중심의 러닝 네트워킹 서비스**
+
+## 🛠 Tech Stack
+* **Language:** Python 3.x
+* **Framework:** Django, Django REST Framework
+* **Auth:** OAuth 2.0 (Kakao)
+* **Infrastructure:** AWS EC2
+
+## 🔍 API Documentation (Swagger)
+현재 배포 준비 중으로, 로컬 환경에서 구축된 Swagger 명세의 주요 내용을 공유합니다. 
+모든 API는 RESTful 원칙을 준수하여 설계되었습니다.
+
+### [핵심 API 명세]
+<img width="537" height="561" alt="image" src="https://github.com/user-attachments/assets/e89a6122-28cc-4808-8008-1ee4845b9a5c" /> <img width="505" height="471" alt="image" src="https://github.com/user-attachments/assets/536adb11-e7f7-400c-8357-d888f48cd867" />
+* 인증: JWT 기반 Kakao 소셜 로그인 및 토큰 리프레시 로직 구축
+* 게시글: CRUD 및 유저별 마이페이지 필터링 구현
+
+
+## 💎 Key Features
+* **Social Auth:** OAuth 2.0 기반 소셜 로그인 연동으로 사용자 접근성을 극대화했습니다.
+* **Cloud Architecture:** AWS 환경에 실제 서비스를 배포하고 환경 변수 관리를 통해 보안성을 강화했습니다.
+* **Community Logic:** 게시글 CRUD 및 유저 간 상호작용을 위한 REST API를 구축했습니다.
+
+## 📝 Lessons Learned (성장 포인트)
+1. **End-to-End 개발 경험:** 로컬 환경을 넘어 클라우드 배포(AWS)까지의 전 과정을 경험하며, 서버 운영의 전반적인 흐름을 파악하게 되었습니다.
+2. **협업을 위한 문서화:** API 명세서 작성의 중요성을 체감했습니다. 프론트엔드 개발자와의 원활한 소통을 위해 명확한 상태 코드와 응답 필드를 정의하는 법을 익혔습니다.
+3. **강인한 정신력과 책임감:** 배포 과정에서 마주한 예기치 못한 인프라 이슈들을 해병대 시절 다져진 끈기로 포기하지 않고 해결하며, 임무를 완수하는 백엔드 개발자로서의 책임감을 길렀습니다.
+
 # 개발컨벤션
 
 # 1. 프로젝트구조 및 폴더 구성
