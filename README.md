@@ -13,6 +13,7 @@
 
 ### [핵심 API 명세]
 <img width="2141" height="1122" alt="Group 2" src="https://github.com/user-attachments/assets/938d98c6-2b45-4f82-a7c0-70fac9256e24" />
+
 * 인증: JWT 기반 Kakao 소셜 로그인 및 토큰 리프레시 로직 구축
 * 게시글: CRUD 및 유저별 마이페이지 필터링 구현
 
