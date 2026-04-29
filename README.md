@@ -1,4 +1,4 @@
-# PaceBook-backend 개발컨벤션
+# 개발컨벤션
 
 # 1. 프로젝트구조 및 폴더 구성
 
@@ -10,7 +10,7 @@ pacebook-backend/
 ├── config/                
 │   ├── __init__.py
 │   ├── settings.py
-│   ├── urls.py         
+│   ├── urls.py           
 │   └── wsgi.py / asgi.py
 │
 ├── common/
@@ -66,7 +66,7 @@ users/
 import os
 import datetime
 
-#django
+# django
 from django.urls import path
 
 # 서드파티
